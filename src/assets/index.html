@@ -368,8 +368,18 @@
             <div class="selectgroup-label d-flex flex-column">
               <div style="line-height: 1; opacity: 0.7; margin-bottom: 0.1rem" class="d-flex align-items-center">
                 <transition name="indicator">
-                  <span class="icon icon-small mr-1" v-if="item.status=='unread'">{% inline "circle-full.svg" %}</span>
-                  <span class="icon icon-small mr-1" v-if="item.status=='starred'">{% inline "star-full.svg" %}</span>
+                  <span
+                    class="icon icon-small mr-1"
+                    :style="`color: ${feedsById[item.feed_id].color};`"
+                    v-if="item.status=='unread'"
+                    >{% inline "circle-full.svg" %}</span
+                  >
+                  <span
+                    class="icon icon-small mr-1"
+                    :style="`color: ${feedsById[item.feed_id].color};`"
+                    v-if="item.status=='starred'"
+                    >{% inline "star-full.svg" %}</span
+                  >
                 </transition>
                 <small class="flex-fill text-truncate mr-1"> {{ feedsById[item.feed_id].title }} </small>
                 <small class="flex-shrink-0"

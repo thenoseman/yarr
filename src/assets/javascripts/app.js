@@ -375,6 +375,13 @@ var vm = new Vue({
     },
   },
   methods: {
+    hslColorFromText: function (text) {
+      text = String(text).repeat(25);
+      let stringUniqueHash = [...text].reduce((acc, char) => {
+        return char.charCodeAt(0) + ((acc << 5) - acc);
+      }, 0);
+      return `hsl(${stringUniqueHash % 360}, 95%, 35%)`;
+    },
     refreshStats: function (loopMode) {
       return api.status().then(function (data) {
         if (loopMode && !vm.itemSelected) vm.refreshItems();
@@ -420,6 +427,11 @@ var vm = new Vue({
       return Promise.all([api.folders.list(), api.feeds.list()]).then(function (values) {
         vm.folders = values[0];
         vm.feeds = values[1];
+
+        // Generate a unique color for each feed based on the title
+        vm.feeds.forEach(feed => {
+          feed.color = vm.hslColorFromText(feed.title);
+        });
       });
     },
     refreshItems: function (loadMore) {
@@ -440,6 +452,7 @@ var vm = new Vue({
         } else {
           vm.items = data.list;
         }
+
         vm.itemsHasMore = data.has_more;
         vm.loading.items = false;
 
