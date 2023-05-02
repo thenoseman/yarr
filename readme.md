@@ -33,3 +33,9 @@ For building from source code, see [build.md](build.md)
 ## credits
 
 [Feather](http://feathericons.com/) for icons.
+
+
+## Modifications by thenoseman
+
+- A unique colored icon for every feed
+- "Pull to refresh" functionality to refresh feeds
