@@ -38,4 +38,3 @@ For building from source code, see [build.md](build.md)
 ## Modifications by thenoseman
 
 - A unique colored icon for every feed
-- "Pull to refresh" functionality to refresh feeds
