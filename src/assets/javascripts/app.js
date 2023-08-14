@@ -200,8 +200,6 @@ var vm = new Vue({
     api.feeds.list_errors().then(function (errors) {
       vm.feed_errors = errors;
     });
-
-    this.installPullToRefresh();
   },
   data: function () {
     var s = app.settings;
@@ -377,18 +375,6 @@ var vm = new Vue({
     },
   },
   methods: {
-    installPullToRefresh() {
-      const vm = this;
-      window.PullToRefresh.init({
-        mainElement: "body",
-        shouldPullToRefresh: function () {
-          return !this.mainElement.scrollTop;
-        },
-        onRefresh: function () {
-          vm.refreshFeeds();
-        },
-      });
-    },
     hslColorFromText: function (text) {
       text = String(text).repeat(25);
       let stringUniqueHash = [...text].reduce((acc, char) => {
